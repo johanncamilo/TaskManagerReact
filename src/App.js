@@ -1,4 +1,3 @@
-import './App.css'
 import React from 'react'
 import { TodoCounter } from './TodoCounter'
 import { TodoSearch } from './TodoSearch'
@@ -15,7 +14,7 @@ const defaultTodos = [
 
 const App = () => {
   return (
-    <React.Fragment>
+    <>
       <TodoCounter completed={16} total={25} />
       <TodoSearch />
 
@@ -26,7 +25,7 @@ const App = () => {
       </TodoList>
 
       <CreateTodoButton />
-    </React.Fragment>
+    </>
   )
 }
 

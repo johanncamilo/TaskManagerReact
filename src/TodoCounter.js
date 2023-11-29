@@ -1,7 +1,9 @@
+import './TodoCounter.css'
+
 export const TodoCounter = ({ total, completed }) => {
   return (
-    <h3>
-      Has completado {completed} de {total} TODOS
-    </h3>
+    <h1 className='TodoCounter'>
+      Has completado <span>{completed}</span> de <span>{total}</span> TODOS
+    </h1>
   )
 }

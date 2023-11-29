@@ -1,3 +1,5 @@
+import './TodoSearch.css'
+
 export const TodoSearch = () => {
-  return <input placeholder='cortar cebolla' />
+  return <input className='TodoSearch' placeholder='cortar cebolla' />
 }

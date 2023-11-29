@@ -1,3 +1,5 @@
+import './CreateTodoButton.css'
+
 export const CreateTodoButton = () => {
-  return <button>Add</button>
+  return <button className='CreateTodoButton'>+</button>
 }
