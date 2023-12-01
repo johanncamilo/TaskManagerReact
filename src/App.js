@@ -10,16 +10,30 @@ const defaultTodos = [
   { text: 'pelar papas', completed: false },
   { text: 'lavar arroz', completed: false },
   { text: 'fritar carne', completed: false },
+  { text: 'usar estados derivados', completed: false },
 ]
 
 const App = () => {
+  /** ESTADOS */
+  const [todos, setTodos] = React.useState(defaultTodos)
+  const [searchValue, setSearchValue] = React.useState('')
+  console.log('💀 ~ file: App.js:19 ~ App ~ searchValue ->', searchValue)
+
+  /** ESTADOS DERIVADOS */
+  const completedTodos = todos.filter((todo) => todo.completed).length
+  const totalTodos = todos.length
+
+  const searchedTodos = todos.filter(({ text }) => {
+    return text.toLowerCase().includes(searchValue.toLocaleLowerCase())
+  })
+
   return (
     <>
-      <TodoCounter completed={16} total={25} />
-      <TodoSearch />
+      <TodoCounter completed={completedTodos} total={totalTodos} />
+      <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
 
       <TodoList>
-        {defaultTodos.map(({ text, completed }) => (
+        {searchedTodos.map(({ text, completed }) => (
           <TodoItem key={text} text={text} completed={completed} />
         ))}
       </TodoList>
