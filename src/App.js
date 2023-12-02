@@ -11,9 +11,17 @@ const defaultTodos = [
   { text: 'lavar arroz', completed: false },
   { text: 'fritar carne', completed: false },
   { text: 'usar estados derivados', completed: false },
+  { text: 'cántár úna kañción cañón', completed: false },
 ]
 
 const App = () => {
+  const normalize = (str) => {
+    str = str || ''
+    str = str.toLowerCase()
+
+    return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+  }
+
   /** ESTADOS */
   const [todos, setTodos] = React.useState(defaultTodos)
 
@@ -25,9 +33,10 @@ const App = () => {
   const felicitaciones = completedTodos === totalTodos ? true : false
 
   const searchedTodos = todos.filter(({ text }) => {
-    return text.toLowerCase().includes(searchValue.toLocaleLowerCase())
+    return normalize(text).includes(normalize(searchValue))
   })
 
+  /** FN */
   const checkTodo = (text) => {
     const newTodos = [...todos]
     const todoIndex = newTodos.findIndex((todo) => todo.text === text)
