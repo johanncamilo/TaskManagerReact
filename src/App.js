@@ -14,6 +14,29 @@ import { CreateTodoButton } from './CreateTodoButton'
 //   { text: 'cántár úna kañción cañón', completed: false },
 // ]
 
+/** CUSTOM HOOK ⚓ */
+const useLocalStorage = (itemName, initialValue) => {
+  const localStorageItem = localStorage.getItem(itemName)
+
+  let parsedItem
+
+  if (!localStorageItem) {
+    localStorage.setItem(itemName, JSON.stringify(initialValue))
+    parsedItem = initialValue
+  } else {
+    parsedItem = JSON.parse(localStorageItem)
+  }
+  const [item, setItem] = React.useState(parsedItem)
+
+  const saveItem = (newItem) => {
+    localStorage.setItem(itemName, JSON.stringify(newItem))
+    setItem(newItem)
+  }
+
+  // consumo el estado de este hook y retorno el setter del estado y el ls
+  return [item, saveItem]
+}
+
 const App = () => {
   const normalize = (str) => {
     str = str || ''
@@ -22,19 +45,10 @@ const App = () => {
     return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
   }
 
-  const localStorageTodos = localStorage.getItem('TODOS_V1')
-
-  let parsedTodos
-
-  if (!localStorageTodos) {
-    localStorage.setItem('TODOS_V1', JSON.stringify([]))
-    parsedTodos = []
-  } else {
-    parsedTodos = JSON.parse(localStorageTodos)
-  }
-
   /** ESTADOS */
-  const [todos, setTodos] = React.useState(parsedTodos)
+
+  // call my custom hook ⚓
+  const [todos, setTodos] = useLocalStorage('TODOS_V1', [])
 
   const [searchValue, setSearchValue] = React.useState('')
 
@@ -47,12 +61,6 @@ const App = () => {
     return normalize(text).includes(normalize(searchValue))
   })
 
-  /** LOCAL STORAGE */
-  const saveTodos = (newTodos) => {
-    localStorage.setItem('TODOS_V1', JSON.stringify(newTodos))
-    setTodos(newTodos)
-  }
-
   /** FN EVENTOS*/
   const checkTodo = (text) => {
     const newTodos = [...todos]
@@ -60,7 +68,7 @@ const App = () => {
 
     newTodos[todoIndex].completed = !newTodos[todoIndex].completed
 
-    saveTodos(newTodos)
+    setTodos(newTodos)
   }
 
   const deleteTodo = (text) => {
@@ -68,7 +76,7 @@ const App = () => {
     const todoIndex = newTodos.findIndex((todo) => todo.text === text)
 
     newTodos.splice(todoIndex, 1)
-    saveTodos(newTodos)
+    setTodos(newTodos)
   }
 
   return (
