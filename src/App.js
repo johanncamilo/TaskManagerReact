@@ -1,9 +1,7 @@
 import React from 'react'
-import { TodoCounter } from './TodoCounter'
-import { TodoSearch } from './TodoSearch'
-import { TodoList } from './TodoList'
-import { TodoItem } from './TodoItem'
-import { CreateTodoButton } from './CreateTodoButton'
+
+import { useLocalStorage } from './Hooks/useLocalStorage'
+import { AppUI } from './AppUI'
 
 // const defaultTodos = [
 //   { text: 'cortar cebolla', completed: true },
@@ -13,29 +11,6 @@ import { CreateTodoButton } from './CreateTodoButton'
 //   { text: 'usar estados derivados', completed: false },
 //   { text: 'cántár úna kañción cañón', completed: false },
 // ]
-
-/** CUSTOM HOOK ⚓ */
-const useLocalStorage = (itemName, initialValue) => {
-  const localStorageItem = localStorage.getItem(itemName)
-
-  let parsedItem
-
-  if (!localStorageItem) {
-    localStorage.setItem(itemName, JSON.stringify(initialValue))
-    parsedItem = initialValue
-  } else {
-    parsedItem = JSON.parse(localStorageItem)
-  }
-  const [item, setItem] = React.useState(parsedItem)
-
-  const saveItem = (newItem) => {
-    localStorage.setItem(itemName, JSON.stringify(newItem))
-    setItem(newItem)
-  }
-
-  // consumo el estado de este hook y retorno el setter del estado y el ls
-  return [item, saveItem]
-}
 
 const App = () => {
   const normalize = (str) => {
@@ -80,18 +55,16 @@ const App = () => {
   }
 
   return (
-    <>
-      <TodoCounter completed={completedTodos} total={totalTodos} felicitaciones={felicitaciones} />
-      <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
-
-      <TodoList>
-        {searchedTodos.map(({ text, completed }) => (
-          <TodoItem key={text} text={text} completed={completed} onComplete={() => checkTodo(text)} onDelete={() => deleteTodo(text)} />
-        ))}
-      </TodoList>
-
-      <CreateTodoButton />
-    </>
+    <AppUI
+      completedTodos={completedTodos}
+      totalTodos={totalTodos}
+      felicitaciones={felicitaciones}
+      searchValue={searchValue}
+      setSearchValue={setSearchValue}
+      searchedTodos={searchedTodos}
+      checkTodo={checkTodo}
+      deleteTodo={deleteTodo}
+    />
   )
 }
 

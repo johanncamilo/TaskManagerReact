@@ -1,6 +1,6 @@
 import React from 'react'
-import { CheckIcon } from './CheckIcon'
-import { DeleteIcon } from './DeleteIcon'
+import { CheckIcon } from '../TodoIcon/CheckIcon'
+import { DeleteIcon } from '../TodoIcon/DeleteIcon'
 
 import './TodoItem.css'
 
