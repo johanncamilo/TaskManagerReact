@@ -23,7 +23,7 @@ const App = () => {
   /** ESTADOS */
 
   // call my custom hook ⚓
-  const [todos, setTodos] = useLocalStorage('TODOS_V1', [])
+  const { item: todos, saveItem: saveTodos, loading, error } = useLocalStorage('TODOS_V1', [])
 
   const [searchValue, setSearchValue] = React.useState('')
 
@@ -43,7 +43,7 @@ const App = () => {
 
     newTodos[todoIndex].completed = !newTodos[todoIndex].completed
 
-    setTodos(newTodos)
+    saveTodos(newTodos)
   }
 
   const deleteTodo = (text) => {
@@ -51,11 +51,13 @@ const App = () => {
     const todoIndex = newTodos.findIndex((todo) => todo.text === text)
 
     newTodos.splice(todoIndex, 1)
-    setTodos(newTodos)
+    saveTodos(newTodos)
   }
 
   return (
     <AppUI
+      loading={loading}
+      error={error}
       completedTodos={completedTodos}
       totalTodos={totalTodos}
       felicitaciones={felicitaciones}
