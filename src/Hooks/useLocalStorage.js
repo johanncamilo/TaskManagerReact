@@ -1,6 +1,6 @@
 import React from 'react'
 
-/** CUSTOM HOOK ⚓ */
+/** MY CUSTOM HOOK ⚓ */
 export const useLocalStorage = (itemName, initialValue) => {
   const [item, setItem] = React.useState(initialValue)
   const [loading, setLoading] = React.useState(true)
