@@ -24,7 +24,7 @@ export const TodoProvider = ({ children }) => {
   const { item: todos, saveItem: saveTodos, loading, error } = useLocalStorage('TODOS_V1', [])
 
   const [searchValue, setSearchValue] = React.useState('')
-  const [openModal, setOpenModal] = React.useState(true)
+  const [openModal, setOpenModal] = React.useState(false)
 
   /** ESTADOS DERIVADOS */
   const completedTodos = todos.filter((todo) => todo.completed).length

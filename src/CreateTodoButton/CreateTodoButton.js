@@ -1,8 +1,8 @@
 import './CreateTodoButton.css'
 
-export const CreateTodoButton = () => {
+export const CreateTodoButton = ({ setOpenModal }) => {
   return (
-    <button className='CreateTodoButton' onClick={(e) => console.log('clickeaste', e.target)}>
+    <button className='CreateTodoButton' onClick={() => setOpenModal((state) => !state)}>
       +
     </button>
   )

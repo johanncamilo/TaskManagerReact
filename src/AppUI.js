@@ -33,7 +33,7 @@ export const AppUI = () => {
         ))}
       </TodoList>
 
-      <CreateTodoButton />
+      <CreateTodoButton setOpenModal={setOpenModal} />
 
       {/* PORTAl */}
       {openModal && <Modal>TODO MODAL</Modal>}
