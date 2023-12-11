@@ -8,6 +8,7 @@ import { TodosLoading } from './TodosLoading/TodosLoading'
 import { TodosError } from './TodosError/TodosError'
 import { EmptyTodos } from './EmptyTodos/EmptyTodos'
 import { Modal } from './Modal/Modal'
+import { TodoForm } from './TodoForm/TodoForm'
 import { TodoContext } from './Context/TodoContext'
 
 export const AppUI = () => {
@@ -36,7 +37,11 @@ export const AppUI = () => {
       <CreateTodoButton setOpenModal={setOpenModal} />
 
       {/* PORTAl */}
-      {openModal && <Modal>TODO MODAL</Modal>}
+      {openModal && (
+        <Modal>
+          <TodoForm />
+        </Modal>
+      )}
     </>
   )
 }
