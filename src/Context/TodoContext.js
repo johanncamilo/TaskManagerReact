@@ -29,7 +29,7 @@ export const TodoProvider = ({ children }) => {
   /** ESTADOS DERIVADOS */
   const completedTodos = todos.filter((todo) => todo.completed).length
   const totalTodos = todos.length
-  const felicitaciones = completedTodos === totalTodos ? true : false
+  const felicitaciones = completedTodos === totalTodos && totalTodos > 0 ? true : false
 
   const searchedTodos = todos.filter(({ text }) => {
     return normalize(text).includes(normalize(searchValue))

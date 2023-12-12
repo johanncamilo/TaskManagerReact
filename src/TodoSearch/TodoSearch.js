@@ -7,7 +7,7 @@ export const TodoSearch = () => {
   return (
     <input
       className='TodoSearch'
-      placeholder='cortar cebolla'
+      placeholder='Search Todos'
       value={searchValue}
       onChange={(e) => {
         setSearchValue(e.target.value)
