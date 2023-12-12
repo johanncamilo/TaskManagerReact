@@ -30,7 +30,7 @@ export const useLocalStorage = (itemName, initialValue) => {
         setLoading(false)
         setError(true)
       }
-    }, 2000)
+    }, 3000)
   }, [itemName, initialValue])
 
   const saveItem = (newItem) => {
