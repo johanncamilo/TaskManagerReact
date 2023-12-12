@@ -53,8 +53,13 @@ export const TodoProvider = ({ children }) => {
     saveTodos(newTodos)
   }
 
+  const addTodo = (text) => {
+    const newTodos = [...todos, { text, completed: false }]
+    saveTodos(newTodos)
+  }
+
   return (
-    <TodoContext.Provider value={{ loading, error, completedTodos, totalTodos, felicitaciones, searchValue, setSearchValue, searchedTodos, checkTodo, deleteTodo, openModal, setOpenModal }}>
+    <TodoContext.Provider value={{ loading, error, completedTodos, totalTodos, felicitaciones, searchValue, setSearchValue, searchedTodos, checkTodo, deleteTodo, addTodo, openModal, setOpenModal }}>
       {children}
     </TodoContext.Provider>
   )
