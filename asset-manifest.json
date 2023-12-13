@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/TaskManagerReact/static/css/main.f64b5f79.css",
+    "main.js": "/TaskManagerReact/static/js/main.f27924c6.js",
+    "index.html": "/TaskManagerReact/index.html",
+    "static/media/delete.svg": "/TaskManagerReact/static/media/delete.7018c4465589031bd51c8efbe21df9ca.svg",
+    "static/media/check.svg": "/TaskManagerReact/static/media/check.e9a948bba52a34123d2ed7aeda0ea495.svg",
+    "main.f64b5f79.css.map": "/TaskManagerReact/static/css/main.f64b5f79.css.map",
+    "main.f27924c6.js.map": "/TaskManagerReact/static/js/main.f27924c6.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f64b5f79.css",
+    "static/js/main.f27924c6.js"
+  ]
+}
